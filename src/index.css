@@ -1,42 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Bakery-themed design system with warm, cozy colors */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Bakery color palette */
+    --background: 35 25% 96%;
+    --foreground: 25 15% 25%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    /* Bakery theme colors */
+    --bakery-cream: 35 35% 92%;
+    --bakery-pink: 340 45% 85%;
+    --bakery-brown: 25 35% 65%;
+    --bakery-mint: 155 35% 80%;
+    --bakery-peach: 15 65% 85%;
+    --bakery-lavender: 270 25% 85%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    /* Semantic colors using bakery palette */
+    --card: 35 35% 94%;
+    --card-foreground: 25 15% 25%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --popover: 35 35% 96%;
+    --popover-foreground: 25 15% 25%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --primary: 25 45% 55%;
+    --primary-foreground: 35 35% 96%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --secondary: 340 35% 80%;
+    --secondary-foreground: 25 15% 25%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --muted: 35 25% 88%;
+    --muted-foreground: 25 15% 45%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --accent: 155 35% 75%;
+    --accent-foreground: 25 15% 25%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --destructive: 0 65% 65%;
+    --destructive-foreground: 35 35% 96%;
 
-    --radius: 0.5rem;
+    --border: 35 25% 85%;
+    --input: 35 25% 90%;
+    --ring: 25 45% 55%;
+
+    /* Bakery gradients */
+    --gradient-bakery: linear-gradient(135deg, hsl(var(--bakery-cream)), hsl(var(--bakery-pink)));
+    --gradient-pastry: linear-gradient(145deg, hsl(var(--bakery-peach)), hsl(var(--bakery-pink)));
+    --gradient-shelf: linear-gradient(180deg, hsl(var(--bakery-brown)), hsl(25 45% 45%));
+    --gradient-warm: linear-gradient(45deg, hsl(var(--bakery-mint)), hsl(var(--bakery-lavender)));
+
+    /* Bakery shadows */
+    --shadow-pastry: 0 8px 25px -8px hsl(var(--bakery-brown) / 0.3);
+    --shadow-shelf: inset 0 2px 4px hsl(25 35% 35% / 0.2);
+    --shadow-cozy: 0 4px 20px -4px hsl(var(--bakery-pink) / 0.4);
+
+    --radius: 1rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +121,81 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-['Fredoka'];
+  }
+}
+
+@layer components {
+  /* Bakery-themed components */
+  .bakery-storefront {
+    background: var(--gradient-bakery);
+    min-height: 100vh;
+  }
+
+  .bakery-shelf {
+    background: var(--gradient-shelf);
+    box-shadow: var(--shadow-shelf);
+    border-radius: var(--radius);
+  }
+
+  .pastry-item {
+    background: var(--gradient-pastry);
+    box-shadow: var(--shadow-pastry);
+    border-radius: var(--radius);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+  }
+
+  .pastry-item:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: var(--shadow-cozy);
+  }
+
+  .pastry-icon {
+    font-size: 4rem;
+    filter: drop-shadow(0 2px 8px hsl(var(--bakery-brown) / 0.3));
+  }
+
+  .bakery-sign {
+    background: hsl(var(--bakery-cream));
+    border: 3px solid hsl(var(--bakery-brown));
+    box-shadow: var(--shadow-cozy);
+    transform: rotate(-2deg);
+  }
+
+  .app-window {
+    background: hsl(var(--card));
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-cozy);
+    backdrop-filter: blur(10px);
+  }
+
+  /* Interactive animations */
+  .wiggle:hover {
+    animation: wiggle 0.6s ease-in-out;
+  }
+
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    25% { transform: rotate(-3deg) scale(1.05); }
+    75% { transform: rotate(3deg) scale(1.05); }
+  }
+
+  .bounce-gentle {
+    animation: bounceGentle 2s ease-in-out infinite;
+  }
+
+  @keyframes bounceGentle {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 }

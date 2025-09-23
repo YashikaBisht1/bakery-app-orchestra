@@ -19,6 +19,17 @@ export default {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        
+        // Bakery theme colors
+        bakery: {
+          cream: "hsl(var(--bakery-cream))",
+          pink: "hsl(var(--bakery-pink))",
+          brown: "hsl(var(--bakery-brown))",
+          mint: "hsl(var(--bakery-mint))",
+          peach: "hsl(var(--bakery-peach))",
+          lavender: "hsl(var(--bakery-lavender))",
+        },
+        
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
