@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import FoodRatingApp from "@/components/FoodRatingApp";
 import TaskManagerApp from "@/components/TaskManagerApp";
 import PlaylistApp from "@/components/PlaylistApp";
+import FeedTheCatGame from "@/components/FeedTheCatGame";
 
 const Index = () => {
   const [activeApp, setActiveApp] = useState<string | null>(null);
@@ -29,6 +30,13 @@ const Index = () => {
       icon: "🍩", 
       description: "Curate songs inspired by books",
       component: <PlaylistApp />
+    },
+    {
+      id: "feed-cat",
+      name: "Feed the Cat",
+      icon: "🎂",
+      description: "Solve puzzles to feed the hungry cat",
+      component: <FeedTheCatGame />
     }
   ];
 
@@ -78,7 +86,7 @@ const Index = () => {
             🌟 Today's Fresh Apps 🌟
           </h2>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {apps.map((app, index) => (
               <Card 
                 key={app.id}
