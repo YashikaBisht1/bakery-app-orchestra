@@ -5,6 +5,7 @@ import FoodRatingApp from "@/components/FoodRatingApp";
 import TaskManagerApp from "@/components/TaskManagerApp";
 import PlaylistApp from "@/components/PlaylistApp";
 import FeedTheCatGame from "@/components/FeedTheCatGame";
+import MoodCakeDecorator from "@/components/MoodCakeDecorator";
 
 const Index = () => {
   const [activeApp, setActiveApp] = useState<string | null>(null);
@@ -37,6 +38,13 @@ const Index = () => {
       icon: "🎂",
       description: "Solve puzzles to feed the hungry cat",
       component: <FeedTheCatGame />
+    },
+    {
+      id: "mood-decorator",
+      name: "MoodCake Decorator",
+      icon: "🍰",
+      description: "Design cakes based on your mood",
+      component: <MoodCakeDecorator />
     }
   ];
 
@@ -86,7 +94,7 @@ const Index = () => {
             🌟 Today's Fresh Apps 🌟
           </h2>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
             {apps.map((app, index) => (
               <Card 
                 key={app.id}
