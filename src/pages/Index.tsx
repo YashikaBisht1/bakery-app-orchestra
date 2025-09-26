@@ -6,6 +6,7 @@ import TaskManagerApp from "@/components/TaskManagerApp";
 import PlaylistApp from "@/components/PlaylistApp";
 import FeedTheCatGame from "@/components/FeedTheCatGame";
 import MoodCakeDecorator from "@/components/MoodCakeDecorator";
+import MoodQuiz from "@/components/MoodQuiz";
 
 const Index = () => {
   const [activeApp, setActiveApp] = useState<string | null>(null);
@@ -45,6 +46,13 @@ const Index = () => {
       icon: "🍰",
       description: "Design cakes based on your mood",
       component: <MoodCakeDecorator />
+    },
+    {
+      id: "mood-quiz",
+      name: "Mood Quiz",
+      icon: "🧠",
+      description: "Understand and improve your mood",
+      component: <MoodQuiz />
     }
   ];
 
