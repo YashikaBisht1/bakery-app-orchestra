@@ -28,6 +28,7 @@ const MoodQuiz = () => {
   const [answers, setAnswers] = useState<number[]>([]);
   const [showResults, setShowResults] = useState(false);
   const [totalPoints, setTotalPoints] = useState(0);
+  const [quizResult, setQuizResult] = useState<MoodResult | null>(null);
 
   const questions: Question[] = [
     {
@@ -85,8 +86,6 @@ const MoodQuiz = () => {
   const analyzeMood = (): MoodResult => {
     const totalScore = answers.reduce((sum, answer) => sum + answer, 0);
     const averageScore = totalScore / answers.length;
-    const points = Math.floor(totalScore * 10);
-    setTotalPoints(points);
 
     if (averageScore >= 3.5) {
       return {
@@ -152,6 +151,11 @@ const MoodQuiz = () => {
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
+      const result = analyzeMood();
+      const totalScore = newAnswers.reduce((sum, answer) => sum + answer, 0);
+      const points = Math.floor(totalScore * 10);
+      setTotalPoints(points);
+      setQuizResult(result);
       setShowResults(true);
     }
   };
@@ -161,19 +165,19 @@ const MoodQuiz = () => {
     setAnswers([]);
     setShowResults(false);
     setTotalPoints(0);
+    setQuizResult(null);
   };
 
-  if (showResults) {
-    const result = analyzeMood();
+  if (showResults && quizResult) {
     
     return (
       <div className="max-w-2xl mx-auto animate-fade-in">
         <Card className="p-8 border-2 border-primary/20 bg-gradient-to-br from-background to-muted/30">
           <div className="text-center mb-6">
-            <div className="text-6xl mb-4">{result.emoji}</div>
+            <div className="text-6xl mb-4">{quizResult.emoji}</div>
             <h2 className="text-3xl font-bold text-primary mb-2">Your Mood Analysis</h2>
             <Badge variant="secondary" className="text-lg px-4 py-2">
-              {result.primaryMood} • {totalPoints} Points Earned!
+              {quizResult.primaryMood} • {totalPoints} Points Earned!
             </Badge>
           </div>
 
@@ -181,7 +185,7 @@ const MoodQuiz = () => {
             <div>
               <h3 className="text-xl font-semibold text-primary mb-3">📊 Insights</h3>
               <div className="space-y-2">
-                {result.insights.map((insight, index) => (
+                {quizResult.insights.map((insight, index) => (
                   <div key={index} className="flex items-start gap-2 p-3 bg-muted/50 rounded-lg">
                     <span className="text-primary">•</span>
                     <p className="text-muted-foreground">{insight}</p>
@@ -193,7 +197,7 @@ const MoodQuiz = () => {
             <div>
               <h3 className="text-xl font-semibold text-primary mb-3">💡 Personalized Recommendations</h3>
               <div className="grid gap-3">
-                {result.recommendations.map((rec, index) => (
+                {quizResult.recommendations.map((rec, index) => (
                   <div key={index} className="flex items-center gap-3 p-4 bg-gradient-to-r from-primary/5 to-primary/10 rounded-lg border border-primary/20">
                     <span className="text-2xl">{rec.split(' ')[0]}</span>
                     <p className="text-muted-foreground">{rec.split(' ').slice(1).join(' ')}</p>
