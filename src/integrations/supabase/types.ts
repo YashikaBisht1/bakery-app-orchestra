@@ -14,7 +14,132 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      book_suggestions: {
+        Row: {
+          ai_reasoning: string | null
+          created_at: string
+          id: string
+          query_genres: string[] | null
+          query_tropes: string[] | null
+          suggested_books: Json | null
+          user_id: string | null
+        }
+        Insert: {
+          ai_reasoning?: string | null
+          created_at?: string
+          id?: string
+          query_genres?: string[] | null
+          query_tropes?: string[] | null
+          suggested_books?: Json | null
+          user_id?: string | null
+        }
+        Update: {
+          ai_reasoning?: string | null
+          created_at?: string
+          id?: string
+          query_genres?: string[] | null
+          query_tropes?: string[] | null
+          suggested_books?: Json | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      books: {
+        Row: {
+          author: string
+          cover_image_url: string | null
+          created_at: string
+          description: string | null
+          genre: string
+          goodreads_rating: number | null
+          id: string
+          isbn: string | null
+          language: string | null
+          page_count: number | null
+          publication_year: number | null
+          publisher: string | null
+          title: string
+          tropes: string[] | null
+          updated_at: string
+        }
+        Insert: {
+          author: string
+          cover_image_url?: string | null
+          created_at?: string
+          description?: string | null
+          genre: string
+          goodreads_rating?: number | null
+          id?: string
+          isbn?: string | null
+          language?: string | null
+          page_count?: number | null
+          publication_year?: number | null
+          publisher?: string | null
+          title: string
+          tropes?: string[] | null
+          updated_at?: string
+        }
+        Update: {
+          author?: string
+          cover_image_url?: string | null
+          created_at?: string
+          description?: string | null
+          genre?: string
+          goodreads_rating?: number | null
+          id?: string
+          isbn?: string | null
+          language?: string | null
+          page_count?: number | null
+          publication_year?: number | null
+          publisher?: string | null
+          title?: string
+          tropes?: string[] | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      user_book_preferences: {
+        Row: {
+          created_at: string
+          disliked_genres: string[] | null
+          disliked_tropes: string[] | null
+          id: string
+          preferred_genres: string[] | null
+          preferred_page_count_max: number | null
+          preferred_page_count_min: number | null
+          preferred_tropes: string[] | null
+          reading_level: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          disliked_genres?: string[] | null
+          disliked_tropes?: string[] | null
+          id?: string
+          preferred_genres?: string[] | null
+          preferred_page_count_max?: number | null
+          preferred_page_count_min?: number | null
+          preferred_tropes?: string[] | null
+          reading_level?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          disliked_genres?: string[] | null
+          disliked_tropes?: string[] | null
+          id?: string
+          preferred_genres?: string[] | null
+          preferred_page_count_max?: number | null
+          preferred_page_count_min?: number | null
+          preferred_tropes?: string[] | null
+          reading_level?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
